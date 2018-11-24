@@ -1,12 +1,12 @@
-import numpy as np
 import logging
-import requests
 import os
-
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-from PIL import Image
-from io import BytesIO
 from collections import deque
+from io import BytesIO
+
+import numpy as np
+import requests
+from PIL import Image
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 TOKEN = "719194908:AAHYi7_L0m-tFL7CFTLV_uCXxNlARlYa2Pk"
 PORT = int(os.environ.get('PORT', '8443'))
@@ -79,11 +79,11 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 updater.start_webhook(
     listen="0.0.0.0",
     port=PORT,
-    url_path='zz'
+    url_path=TOKEN
 )
 
 updater.bot.set_webhook(
-    "https://c8d06f1e.ngrok.io/" + 'zz'
+    "https://image-thumbnail-bot.herokuapp.com/" + TOKEN
 )
 
 updater.idle()
