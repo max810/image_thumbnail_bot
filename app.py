@@ -1,6 +1,4 @@
 import logging
-logging.info("\n\nCheck\n\n")
-
 import os
 from collections import deque
 from io import BytesIO
@@ -87,5 +85,5 @@ updater.start_webhook(
 updater.bot.set_webhook(
     "https://image-thumbnail-bot.herokuapp.com/" + TOKEN
 )
-
+print("\nBot OK\n")
 updater.idle()
