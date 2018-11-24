@@ -86,4 +86,5 @@ updater.bot.set_webhook(
     "https://image-thumbnail-bot.herokuapp.com/" + TOKEN
 )
 
+logging.info("Bot started")
 updater.idle()
