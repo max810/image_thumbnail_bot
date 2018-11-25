@@ -85,5 +85,7 @@ updater.start_webhook(
 updater.bot.set_webhook(
     "https://image-thumbnail-bot.herokuapp.com/" + TOKEN
 )
-print("\nBot OK\n")
+print("==========My comment==========")
+print("\nBot launched. All OK.\n")
+print("========end my comment========")
 updater.idle()
