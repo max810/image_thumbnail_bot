@@ -11,6 +11,9 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 TOKEN = "719194908:AAHYi7_L0m-tFL7CFTLV_uCXxNlARlYa2Pk"
 PORT = int(os.environ.get('PORT', '8443'))
 
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
+
 
 def colors_roughly_equal(color1, color2, threshold=5):
     return np.all(np.abs(color1 - color2) <= threshold)
@@ -21,7 +24,6 @@ def dfs_inplace(matrix, color, i, j):
     queue = deque([(i, j)])
     while len(queue):
         i, j = queue.popleft()
-
         if matrix[i, j, -1] == 0 or not colors_roughly_equal(matrix[i, j], color):
             continue
         else:
@@ -68,13 +70,12 @@ def start(bot, update):
 
 updater = Updater(token=TOKEN)
 dispatcher = updater.dispatcher
+
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
+
 image_handler = MessageHandler(Filters.document, process_image)
 dispatcher.add_handler(image_handler)
-
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO)
 
 updater.start_webhook(
     listen="0.0.0.0",
@@ -85,7 +86,6 @@ updater.start_webhook(
 updater.bot.set_webhook(
     "https://image-thumbnail-bot.herokuapp.com/" + TOKEN
 )
-print("==========My comment==========")
+
 print("\nBot launched. All OK.\n")
-print("========end my comment========")
 updater.idle()
