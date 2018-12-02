@@ -55,6 +55,8 @@ def process_image(bot, update):
         dfs_inplace(pixels, bg_value, h - 1, w - 1)
 
     img = Image.fromarray(pixels)
+    while max(img.size) <= 512:
+        img = img.resize([2 * x for x in img.size])
     img.thumbnail((512, 512), Image.ANTIALIAS)  # inplace
 
     image_file = BytesIO()
